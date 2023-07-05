@@ -1,0 +1,41 @@
+{
+    "category": "plugins",
+    "display": "Extract Page",
+    "fields": {
+        "AAe": {
+            "caption": "Source PDF",
+            "doc": "PDF in base 64 to extract page from",
+            "editor": "DynamicValue",
+            "is_list": false,
+            "long_text": true,
+            "name": "sourcepdf",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAk": {
+            "caption": "Page Number",
+            "doc": "Page to retrieve",
+            "editor": "DynamicValue",
+            "name": "pagenumber",
+            "rank": 2,
+            "value": "number"
+        },
+        "ABC": {
+            "caption": "Extract a single page from a PDF, as a PDF. Returns Base64 encoded contents.",
+            "editor": "Label",
+            "name": "information",
+            "rank": 0
+        }
+    },
+    "return_value": {
+        "AAH": {
+            "caption": "Contents",
+            "is_list": false,
+            "name": "contents",
+            "rank": 0,
+            "value": "text"
+        }
+    },
+    "type": "server_side",
+    "use_packages": true
+}

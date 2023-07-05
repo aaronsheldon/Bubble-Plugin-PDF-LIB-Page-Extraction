@@ -1,0 +1,33 @@
+{
+    "category": "plugins",
+    "display": "Extract All Pages",
+    "fields": {
+        "AAI": {
+            "caption": "Source PDF",
+            "doc": "PDF in base 64 to extract all pages from",
+            "editor": "DynamicValue",
+            "is_list": false,
+            "long_text": true,
+            "name": "sourcepdf",
+            "rank": 1,
+            "value": "text"
+        },
+        "ABA": {
+            "caption": "Extract each page of a PDF into individual PDFs. Returns a list of Base64 Contents.",
+            "editor": "Label",
+            "name": "information",
+            "rank": 0
+        }
+    },
+    "return_value": {
+        "AAH": {
+            "caption": "Contents",
+            "is_list": true,
+            "name": "contents",
+            "rank": 0,
+            "value": "text"
+        }
+    },
+    "type": "server_side",
+    "use_packages": true
+}

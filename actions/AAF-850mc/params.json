@@ -1,0 +1,32 @@
+{
+    "category": "plugins",
+    "display": "Merge Pages",
+    "fields": {
+        "AAJ": {
+            "caption": "Source PDFs",
+            "doc": "PDFs in base 64 to merge into one PDF",
+            "editor": "DynamicValue",
+            "is_list": true,
+            "long_text": true,
+            "name": "sourcepdfs",
+            "rank": 1,
+            "value": "text"
+        },
+        "AAz": {
+            "caption": "Merge a list of PDFs into a single PDF in the order of the supplied list. Returns Base64 encoded contents.",
+            "editor": "Label",
+            "name": "information",
+            "rank": 0
+        }
+    },
+    "return_value": {
+        "AAK": {
+            "caption": "Contents",
+            "name": "contents",
+            "rank": 0,
+            "value": "text"
+        }
+    },
+    "type": "server_side",
+    "use_packages": true
+}

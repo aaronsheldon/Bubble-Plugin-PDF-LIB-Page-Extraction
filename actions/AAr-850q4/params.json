@@ -1,0 +1,33 @@
+{
+    "category": "plugins",
+    "display": "Count Pages",
+    "fields": {
+        "AAl": {
+            "caption": "Source PDF",
+            "doc": "PDF in base 64 to count pages of",
+            "editor": "DynamicValue",
+            "is_list": false,
+            "long_text": true,
+            "name": "sourcepdf",
+            "rank": 1,
+            "value": "text"
+        },
+        "ABB": {
+            "caption": "Count the pages in a PDF.",
+            "editor": "Label",
+            "name": "information",
+            "rank": 0
+        }
+    },
+    "return_value": {
+        "AAH": {
+            "caption": "Page Count",
+            "is_list": false,
+            "name": "pagecount",
+            "rank": 0,
+            "value": "number"
+        }
+    },
+    "type": "server_side",
+    "use_packages": true
+}
