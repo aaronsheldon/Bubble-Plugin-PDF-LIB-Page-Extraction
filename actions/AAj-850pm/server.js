@@ -1,42 +1,29 @@
-function(properties, context) {
-	var pdfutil = require("pdf-lib");
+async function(properties, context) {
+	const pdfutil = require("pdf-lib");
     
     // Store the PDF bytes
-    var sourcebuffer = Buffer.from(properties.sourcepdf, "base64");
+    const sourcebuffer = Buffer.from(properties.sourcepdf, "base64");
 
     // Document load
-    var promisesource = pdfutil.PDFDocument.load(sourcebuffer);
-    var sourcepdf = context.async(
-    	callback => promisesource
-        .then(loadedpdf => callback(null, loadedpdf))
-        .catch(reason => callback(reason))
-    );
+    const promisesource = pdfutil.PDFDocument.load(sourcebuffer);
     
     // New document
-    var promisetarget = pdfutil.PDFDocument.create();
-    var targetpdf = context.async(
-    	callback => promisetarget
-        .then(newpdf => callback(null, newpdf))
-        .catch(reason => callback(reason))
-    );
+    const promisetarget = pdfutil.PDFDocument.create();
     
     // Page copy
-    var promisepage = targetpdf.copyPages(sourcepdf, [properties.pagenumber-1]);
-    var [targetpage] = context.async(
-    	callback => promisepage
-        .then(extractedpage => callback(null, extractedpage))
-        .catch(reason => callback(reason))
-    );
-    targetpdf.addPage(targetpage);
+    const promisepage = Promise.all([promisesource, promisetarget])
+    .then(([source, target]) => { return target.copyPages(source, [properties.pagenumber-1]); });
     
-    // Write bytes
-    var promisesave = targetpdf.save();
-    var targetbuffer = context.async(
-    	callback => promisesave
-        .then(savedpdf => callback(null, savedpdf))
-        .catch(reason => callback(reason))
-    );
+    // Page insert
+    const promisesave = Promise.all([promisetarget, promisepage])
+    .then(
+        ([target, page]) => {
+            target.addPage(page);
+            return target.save();
+        }
+    )
+    .then((saved) => { return { contents: Buffer.from(saved).toString("base64") }; });
     
     // Send
-    return { contents: Buffer.from(targetbuffer).toString("base64") };
+    return promisesave;
 }

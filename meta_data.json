@@ -12,5 +12,5 @@
     "link": "https://pdf-lib.js.org/",
     "name": "PDF-LIB Page Extraction",
     "plugin_instructions": "The plugin provides the following Server Side Actions:\n\n\"Merge Pages\" combine the the pages from the list of base 64 encoded PDFs. Returns the combined result in a string as a base 64 encoded PDF.\n\n\"Extract All Pages\" extract all the pages from the base 64 encoded PDF. Returns the extracted pages in a list of strings as a base 64 encoded PDFs.\n\n\"Extract Page\" extract a specific page from the base 64 encoded PDF. Returns the extracted page in a string as a base 64 encoded PDF.\n\n\"Count Pages\" count the pages of the base 64 encoded PDF. Returns the number of pages.",
-    "sa_node_version": 14
+    "sa_node_version": 18
 }

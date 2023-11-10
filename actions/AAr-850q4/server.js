@@ -1,17 +1,13 @@
-function(properties, context) {
-	var pdfutil = require("pdf-lib");
+async function(properties, context) {
+	const pdfutil = require("pdf-lib");
     
     // Store the PDF bytes
-    var sourcebuffer = Buffer.from(properties.sourcepdf, "base64");
+    const sourcebuffer = Buffer.from(properties.sourcepdf, "base64");
 
     // Asynchronous document load
-    var promisesource = pdfutil.PDFDocument.load(sourcebuffer);
-    var sourcepdf = context.async(
-        callback => promisesource
-        .then(loadedpdf => callback(null, loadedpdf))
-        .catch(reason => callback(reason))
-    );
+    const promisesource = pdfutil.PDFDocument.load(sourcebuffer)
+    .then((pdf) => { return { pagecount: pdf.getPageCount() }; });
     
     // Send
-    return { pagecount: sourcepdf.getPageCount() };
+    return promisesource;
 }
